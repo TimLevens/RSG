@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<canvas id="Visual" alt='value ='oldval'' width="1000" height="500" style="border:1px solid #000;">
+    Use Chrome bruh! </canvas>
+<p id="info">RSG value:
+    <a id="stockvalue"></a>
+    <br><br>News:
+    <a id="News"></a>
+</p>
+</body>
+
+<script>
+    var div = document.getElementById('News');
+    var time = 0;
+    var ran = 0;
+    var oldval = 0;
+    var ranfloor = 0;
+    var floorper = 0;
+    var diff = 0;
+    ranfloor = oldval + ( Math.random() * 12 ) - 6;
+    function reroll(){
+        floorper = Math.floor(Math.random()* 10);
+    }
+    reroll();
+    function magic()
+    {
+        ran = Math.random();
+        reroll();
+
+
+        if (ranfloor >= oldval){
+            if (floorper = 1){
+                oldval += ran ;
+                console.log(oldval);
+                reroll()
+            }else{
+                oldval -= ran ;
+                console.log(oldval);
+                reroll();
+            }
+        }else if (ranfloor <= oldval){
+            if (floorper = 1){
+                oldval -= ran ;
+                console.log(oldval);
+                reroll();
+            }else{
+                oldval += ran ;
+                console.log(oldval);
+                reroll();
+            }
+        }
+        diff = ranfloor - oldval;
+        if ( diff <= 1 && diff >= -1){
+            ranfloor = oldval + (Math.random()* 12) - 6;
+            if(ranfloor < oldval){
+                div.innerHTML = "RSG lied about Quarter <br><br>"+ div.innerHTML;
+            }else {
+                div.innerHTML = "RSG just released a new quality product  <br><br>"+ div.innerHTML;
+            }
+        }
+        setTimeout(magic, 1500);
+        time += 5;
+        value.lineTo(time,250 - oldval*10);
+        value.stroke();
+        document.getElementById("stockvalue").innerHTML = oldval;
+    }
+    var canvas = document.getElementById("Visual");
+    var zero = canvas.getContext("2d");
+    var value = canvas.getContext("2d");
+    value.beginPath();
+    value.moveTo(0,250);
+    zero.beginPath();
+    zero.moveTo(1000,250);
+    zero.lineTo(0,250);
+    zero.stroke();
+
+    onload(magic());
+</script>
+</html>
