@@ -1,0 +1,2 @@
+# RSG
+Random stock generator
